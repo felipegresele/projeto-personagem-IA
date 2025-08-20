@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Personagens IA</title>
+    <style>
+        /* Fonte moderna */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background: linear-gradient(135deg, #f2f2f2, #e6e0e0);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #7d5a50;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(125, 90, 80, 0.3);
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #5a4a42;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #c0b8b0;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #a89b91;
+            box-shadow: 0 0 8px rgba(168, 155, 145, 0.5);
+        }
+
+        input::placeholder {
+            color: #999;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #d8c3a5;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #c0b090;
+            box-shadow: 0 0 12px rgba(168, 155, 145, 0.4);
+        }
+
+        hr {
+            border: 1px solid #c0b8b0;
+            margin: 40px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        thead {
+            background: #d8c3a5;
+            color: #333;
+        }
+
+        tbody tr:nth-child(even) {
+            background: rgba(200, 190, 180, 0.3);
+        }
+
+        tbody tr:hover {
+            background: rgba(200, 190, 180, 0.5);
+            cursor: default;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Cadastro de Personagem IA</h1>
+
+<form th:action="@{/personagem/save}" th:object="${personagem}" method="post">
+    <label>Nome:</label>
+    <input type="text" th:field="*{nome}" placeholder="Ex: Alpha"/>
+
+    <label>Personalidade:</label>
+    <input type="text" th:field="*{personalidade}" placeholder="Ex: Curioso, Inteligente"/>
+
+    <label>Estilo de Diálogo:</label>
+    <select th:field="*{estiloDialogo}">
+        <option th:value="FORMAL">FORMAL</option>
+        <option th:value="INFORMAL">INFORMAL</option>
+        <option th:value="SARCASTICO">SARCASTICO</option>
+        <option th:value="ENGRACADO">ENGRACADO</option>
+        <option th:value="HUMORADO">HUMORADO</option>
+    </select>
+
+    <label>Habilidades (separe por vírgula):</label>
+    <input type="text" th:field="*{habilidades}" placeholder="Ex: ataque, defesa, magia"/>
+
+    <button type="submit">Salvar</button>
+</form>
+
+<hr>
+
+<h1>Lista de Personagens IA</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Personalidade</th>
+        <th>Estilo de Diálogo</th>
+        <th>Habilidades</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${personagens}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.nome}"></td>
+        <td th:text="${p.personalidade}"></td>
+        <td th:text="${p.estiloDialogo}"></td>
+        <td th:text="${p.habilidades}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
