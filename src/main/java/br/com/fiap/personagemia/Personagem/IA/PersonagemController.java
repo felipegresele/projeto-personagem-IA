@@ -19,7 +19,7 @@ public class PersonagemController {
     }
 
     @GetMapping("/index")
-    public String index(Model model) {
+    public String index(@Valid Model model) {
         model.addAttribute("personagem", new PersonagemIA());
         model.addAttribute("personagens", personagemRepository.findAll());
         return "index"; // index.html

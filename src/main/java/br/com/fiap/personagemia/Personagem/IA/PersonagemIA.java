@@ -20,24 +20,32 @@ import java.util.List;
 @NoArgsConstructor
 public class PersonagemIA {
 
-    @Id
+    @NotNull(message = "Este campo é obrigatório")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @Size(min = 3, max = 50, message="O nome deve ter entre 2 e 50 caracteres")
-    private String nome;
+    @NotNull(message = "Este campo é obrigatório")
+    @Size(min = 3, max = 40, message="O nome deve ter entre 2 e 50 caracteres")
+    private String name;
 
-    @NotNull(message = "A personalidade é obrigatória")
-    @Size(min = 3, max = 100, message = "A personalidade deve ter entre 3 e 100 caracteres")
-    private String personalidade;
-
-    @NotNull
-    private EstiloDialogo estiloDialogo;
+    @NotNull(message = "Este campo é obrigatório")
+    private EstiloDialogo species;
 
     @NotNull
-    @Size(max = 50, message = "Maxímo 50 caracteres")
-    private String habilidades;
+    @Size(min = 1, max 10, message="O level deve ser de 0 até 10")
+    private int level;
+
+    @NotNull(message = "Este campo é obrigatório")
+    @Size(max = 280, message = "Maxímo 280 caracteres")
+    private String bio;
+
+    @NotNull(message = "Este campo é obrigatório")
+    @Size(max = 60, message = "Maxímo 60 caracteres")
+    private String specialAbility;
+
+    @NotNull(message = "Este campo é obrigatório")
+    @PastOrPresent
+    private LocalDate creationDate();
 
 }
 

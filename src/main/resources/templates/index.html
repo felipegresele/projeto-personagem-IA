@@ -116,22 +116,28 @@
 
 <form th:action="@{/personagem/save}" th:object="${personagem}" method="post">
     <label>Nome:</label>
-    <input type="text" th:field="*{nome}" placeholder="Ex: Alpha"/>
+    <input type="text" th:field="*{name}" placeholder="Ex: Alpha"/>
 
-    <label>Personalidade:</label>
-    <input type="text" th:field="*{personalidade}" placeholder="Ex: Curioso, Inteligente"/>
+    <label>Biografia:</label>
+    <input type="text" th:field="*{bio}" placeholder="Ex: Curioso, Inteligente"/>
 
-    <label>Estilo de Diálogo:</label>
-    <select th:field="*{estiloDialogo}">
-        <option th:value="FORMAL">FORMAL</option>
-        <option th:value="INFORMAL">INFORMAL</option>
-        <option th:value="SARCASTICO">SARCASTICO</option>
-        <option th:value="ENGRACADO">ENGRACADO</option>
-        <option th:value="HUMORADO">HUMORADO</option>
+    <label>Nivel:</label>
+    <input type="number" th:field="*{level}" max="10" min="1"/>
+
+    <label>Estilo de Especie:</label>
+    <select th:field="*{species}">
+        <option th:value="HUMAN">HUMAN</option>
+        <option th:value="CYBORG">CYBORG</option>
+        <option th:value="ALIEN">ALIEN</option>
+        <option th:value="ANDROID">ANDROID</option>
     </select>
 
     <label>Habilidades (separe por vírgula):</label>
-    <input type="text" th:field="*{habilidades}" placeholder="Ex: ataque, defesa, magia"/>
+    <input type="text" th:field="*{specialAbility}" placeholder="Ex: programação, estudos, rapidez "/>
+
+    <label>Data:</label>
+    <input type="date" th:field="*{creationDate}"/>
+
 
     <button type="submit">Salvar</button>
 </form>
